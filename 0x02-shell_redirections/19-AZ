@@ -1,0 +1,2 @@
+#!/bin/bash
+tr "Ä""Z" |tr "c""e"
