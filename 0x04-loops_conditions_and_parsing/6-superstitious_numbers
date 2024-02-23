@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+#Displays numbers from 1 to 20.
+
+
+j=1
+while [ $j -lt 21 ]
+do
+	case $j in 
+		4)
+			echo $j
+			echo "bad luck from China"
+			;;
+
+		9)
+			echo $j
+			echo "bad luck Japan"
+			;;
+
+		17)
+			echo $j
+			echo "bad luck from Italy"
+			;;
+
+		*)
+			echo $j
+			;;
+	esac
+
+	let j+=1
+done
