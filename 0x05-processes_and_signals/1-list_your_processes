@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script displays a list of current running processes.
+
+# Display the header
+printf "%-10s %-5s %-5s %-6s %-6s %-6s %-6s %-6s %-10s %s\n" "USER" "PID "%CPU" "%MEM" "VSZ" "RSS" "TTY" "STAT" "START" COMMAND"
+
+# Iterate over each process
+while IFS= read -r line; do 
+	# Display process information
+	printf "%-10s %-5s %-5s %-6s %-6s %-6s %-6s %-6s %-10s %s\n" $line
+done < <(ps aux --forest --no-headers)
