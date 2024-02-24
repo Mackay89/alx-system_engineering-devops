@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-#Displays numbers from 1 to 20.
+# Displays numbers from 1 to 20.
 
 
 j=1
+
 while [ $j -le 21 ]
 do
 	case $j in 
