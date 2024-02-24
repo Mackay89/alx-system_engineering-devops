@@ -6,5 +6,5 @@ j=10
 while [ $j -le 10 ]
 do
 	echo "Best School"
-	let j-=1
+	((j++))
 done
