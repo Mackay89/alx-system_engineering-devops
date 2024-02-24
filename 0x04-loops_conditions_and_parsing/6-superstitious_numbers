@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Displays numbers from 1 to 20.
+# This script displays numbers from 1 to 20.
 
 
 j=1
@@ -7,15 +7,15 @@ j=1
 while [ $j -le 20 ]
 do
 	case $j in
-		4)
+		"4")
 			echo "bad luck from China"
 			;;
 
-		9)
+		"9")
 			echo "bad luck Japan"
 			;;
 
-		17)
+		"17")
 			echo "bad luck from Italy"
 			;;
 
