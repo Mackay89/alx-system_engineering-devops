@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Displays Best School 10 times
+# A script that loops through 1 to 10 using while
 
 
 j=1
+
 while [ $j -le 11 ]
 do
 	if [ i = 4 ]
