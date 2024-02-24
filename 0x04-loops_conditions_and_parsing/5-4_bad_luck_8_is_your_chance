@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# A script that loops through 1 to 10 using while
+# A bash script that loops from 1 to 10.
 
 
 j=1
 
-while [ $j -le 11 ]
+while [ $j -le 10 ]
 do
-	if [ i = 4 ]
+	if [ $j -eq 4 ]
 	then
 		echo "bad luck"
-	elif [ $j = 8 ]
+	elif [ $j -eq 8 ]
 	then
 		echo "good luck"
 	else
