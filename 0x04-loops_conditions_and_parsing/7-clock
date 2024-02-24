@@ -3,14 +3,12 @@
 
 
 hr=0
-while [ $hr -le 12 ]
-do
+while [ $hr -le 12 ]; do
 	echo "hr: hour"
-	min=1
-	while [ $min -le 59 ]
-	do
-		echo $min
+	min=0
+	while [ $min -le 59 ]; do
+		printf "%02d\n" $min
 		((min++))
-	done
-		((hr++))
+	done	
+	((hr++))
 done
