@@ -6,25 +6,22 @@ j=1
 
 while [ $j -le 20 ]
 do
-	case $j in 
+	case $j in
 		4)
-			echo $j
 			echo "bad luck from China"
 			;;
 
 		9)
-			echo $j
 			echo "bad luck Japan"
 			;;
 
 		17)
-			echo $j
 			echo "bad luck from Italy"
 			;;
 
 		*)
-			echo $j
 			;;
+
 	esac
 
 	((j++))
