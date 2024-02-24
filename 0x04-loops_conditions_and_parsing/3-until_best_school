@@ -4,7 +4,7 @@
 
 j=0
 
-while [ $j -ge 10 ]
+while [ $j -le 10 ]
 do
 	echo "Best School"
 	((j++))
