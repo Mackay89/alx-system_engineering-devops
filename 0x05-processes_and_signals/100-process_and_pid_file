@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script display messages when receiving signals
+# This script displays messages when receiving signals
 
 
 cleanup_and_exit()
@@ -18,6 +18,6 @@ echo $$ > /var/run/myscript.pid
 
 
 while true; do
-	echo 'To infinity and beyond'
+	echo "To infinity and beyond"
 	sleep 2
 done
