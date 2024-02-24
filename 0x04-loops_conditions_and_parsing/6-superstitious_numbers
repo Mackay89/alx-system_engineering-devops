@@ -4,18 +4,19 @@
 
 j=1
 
+
 while [ $j -le 20 ]
 do
 	case $j in
-		"4")
+		4)
 			echo "bad luck from China"
 			;;
 
-		"9")
+		9)
 			echo "bad luck Japan"
 			;;
 
-		"17")
+		17)
 			echo "bad luck from Italy"
 			;;
 
