@@ -2,8 +2,8 @@
 # Displays the content of the current directorY in a list format
 # Where only part of the name after the first dash is displayed
 
-for _ in *
-do
-	echo "$_" | cut -f 2 -d '-'
+for file in *; do
+	if [[ $file =~ -(.*) ]]; then
+		echo "${BASH_REMATCH[1]}"
+	fi
 done
-
