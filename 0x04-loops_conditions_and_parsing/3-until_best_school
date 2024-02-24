@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# Displays "Best School" 10 times.
+# Displays "Best School" 10 times using the until loop.
 
 
 j=0
-
 while [ $j -le 10 ]
 do
 	echo "Best School"
