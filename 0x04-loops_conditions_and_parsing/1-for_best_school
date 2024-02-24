@@ -3,7 +3,7 @@
 # This script displays "Best School" 10 times.
 
 
-for _in {1..10}
+for _ in {1..10}
 do
 	echo "Best School"
 done

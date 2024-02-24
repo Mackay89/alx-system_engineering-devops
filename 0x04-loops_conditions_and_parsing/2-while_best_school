@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-
 # This script displays "Best School" 10 times.
 
 j=0
-while [ j -1t 10]
+while [ $j -le 10 ]
 do
 	echo "Best School"
-	let j=j+1
+	((j++))
 done 
