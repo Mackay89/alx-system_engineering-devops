@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # This script displays "Best School" 10 times using the until loop.
-j=0
-while [ $j -lt 10 ]
+j=10
+until [ $j -lt 1 ]
 do
 	echo "Best School"
 	((j++))
