@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# Displays the content of the current directorY in a list format
-# Where only part of the name after the first dash is displayed
+# Displays the content of the current directory in a list format
+# Where only part of the name after the first dash is displaye
 
-for file in *; do
-	if [[ $file =~ ^[^-]*-(.*) ]]; then
-		echo "${BASH_REMATCH[1]}"
-	fi
+for j in *
+do
+	echo "$j" | cut -d '-' -f 2
 done
