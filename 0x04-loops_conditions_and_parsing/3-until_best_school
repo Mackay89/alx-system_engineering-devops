@@ -4,5 +4,5 @@ j=10
 until [ $j -lt 1 ]
 do
 	echo "Best School"
-	((j++))
+	j=$((j - 1))
 done
