@@ -4,10 +4,10 @@
 h=0
 while [ $h -lt 13 ]; do
 	echo "hour: $h"
-	m=1
+	m=0
 	while [ $m -lt 60 ]; do
-		echo $m
-		let m+=1
+		printf "%02d:%02d\n" $h $m
+		((m++))
 	done	
-	let h+=1
+	((h++))
 done
