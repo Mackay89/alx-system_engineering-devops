@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script displays numbers from 1 to 100.
+
+for j in {1..100}
+do
+	if [ $((j % 3)) == 0 ] && [ $((j % 5)) == 0 ]
+	then
+		echo "FizzBuzz"
+	elif [ $((j % 3)) == 0 ]
+	then
+		echo "Fizz"
+	elif [ $((j % 5)) == 0 ]
+	then
+		echo "Buzz"
+	else
+		echo $j
+	fi
+done
