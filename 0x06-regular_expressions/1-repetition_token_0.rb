@@ -6,5 +6,8 @@ if ARGV.empty?
 end
 
 string = ARGV[0]
+
 matches = string.scan(/hb{2,5}n/)
+
 puts matches.join("\n")
+
