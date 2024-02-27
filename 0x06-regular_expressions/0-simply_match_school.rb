@@ -1,2 +1,14 @@
 #!/usr/bin/env ruby
-puts ARGV[0].scan(/School/).join
+
+if ARGV.empty?
+  puts "Usage: #($School) <string>"
+  exit 1
+end
+
+string = ARGV[0]
+
+pattern = /School/
+
+matches = string.scan(pattern)
+
+puts matches.join
