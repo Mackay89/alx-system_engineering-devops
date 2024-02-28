@@ -1,6 +1,12 @@
 #!/usr/bin/env ruby
 
-sender = ARGV[0].scan(/(?<=\[from:)[^]+(?=\])/).join
-reciver = ARGV[0].scan(/(?<=\[to:)[^]+(?=\])/).join
-flags = ARGV[0].scan(/(?<=\[flags:)[^]+(?=\])/).join
+if ARGV.empty?
+  puts "USAGE: #{$PROGRAM_NAME} <input_string>"
+  exit 1
+end
+
+sender = ARGV[0].scan(/\[from:([^\]]+)\]/).flatten.first
+reciver = ARGV[0].scan(/\[to:([^\]]+)\]/).flatten.first
+flags = ARGV[0].scan(/\[flags:([^\]]+)\]/).flatten.first
+
 puts "#{sender},#{reciever},#flags}"
