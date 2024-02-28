@@ -5,6 +5,6 @@ if ARGV.empty?
   exit 1
 end
 
-uppercaseletter = ARGV[0].scan(/[A-Z]/).join
+uppercase_letter = ARGV[0].scan(/[A-Z]/).join
 
 puts uppercase_letter
