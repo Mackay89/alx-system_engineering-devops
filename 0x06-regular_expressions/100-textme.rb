@@ -6,7 +6,7 @@ if ARGV.empty?
 end
 
 sender = ARGV[0].scan(/\[from:([^\]]+)\]/).flatten.first
-reciver = ARGV[0].scan(/\[to:([^\]]+)\]/).flatten.first
+receiver = ARGV[0].scan(/\[to:([^\]]+)\]/).flatten.first
 flags = ARGV[0].scan(/\[flags:([^\]]+)\]/).flatten.first
 
-puts "#{sender},#{reciever},#{flags}"
+puts "#{sender},#{receiver},#{flags}"
