@@ -5,4 +5,4 @@ if ARGV.empty?
   exit 1
 end
 
-puts ARGV[0].scan(/hbt+n/).join
+puts ARGV[0].scan(/^\d{10}$/).join
