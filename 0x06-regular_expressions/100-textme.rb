@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 if ARGV.empty?
-  puts "USAGE: #{$PROGRAM_NAME} <input_string>"
+  puts "USAGE: #{$PROGRAM_NAME} <log_string>"
   exit 1
 end
 
