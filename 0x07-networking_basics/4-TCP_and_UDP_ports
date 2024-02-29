@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script displays listening ports.
+
+netstat -lp | awk '$1 == "tcp" || $1 == "udp" {print $1,$4,$7}'
