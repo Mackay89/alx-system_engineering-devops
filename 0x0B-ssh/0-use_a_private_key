@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 
-ssh -i ~/.ssh/school ubuntu@52.72.30.154
+ssh -i ~/.ssh/school -O User=ubuntu@52.72.30.154
 
