@@ -3,14 +3,15 @@
 #Update package index and install nginx with -y flag for automatic yes to prompts
 
 
-sudo apt-get -y update
+sudo apt-get update
 sudo apt-get install -y nginx 
 
 
 sudo ufw allow "Nginx HTTP"
 
 
-sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
+INDEX_FILE="/var/www/html/index.nginx-debian.html"
+sudo chown $USER:$USER $INDEX_FILE
+echo "Hello World!" | sudo tee $INDEX_FILE > /dev/null
 
 sudo service nginx restart
