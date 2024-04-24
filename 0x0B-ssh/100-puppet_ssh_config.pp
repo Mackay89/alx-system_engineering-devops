@@ -10,11 +10,11 @@ file { '/etc/ssh/ssh_config':
 file_line { 'Turn off password auth':
   path    => '/etc/ssh/ssh_config',
   line    => '	passwordAuthentication no',
-  replace => true,
+  replace => '^#IdentityFile',
 }
 
 
 file_line { 'Declare identity file ':
-  path   => '/etc/ssh/ssh_config',
-  line   => 'IdentityFile ~/.ssh/school',
-  replace  => true
+  path    => '/etc/ssh/ssh_config',
+  line    => 'IdentityFile ~/.ssh/school',
+  replace => '^#IdentityFile',
