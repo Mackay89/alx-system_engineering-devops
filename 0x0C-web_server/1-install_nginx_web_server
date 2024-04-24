@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Script that installs nginx on web server; Ngin should be listening on 80
+#Script that installs nginx on web server; Nginx should be listening port on 80
 #Update package index and install nginx with -y flag for automatic yes to prompts
 sudo apt-get update
 sudo apt-get install -y nginx 
