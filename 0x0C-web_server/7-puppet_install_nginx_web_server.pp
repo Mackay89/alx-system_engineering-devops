@@ -2,7 +2,7 @@
 
 
 exec { "update system":
-	command => "/user/bin/apt-grt update",
+	command => "/user/bin/apt-get update",
 }
 
 
