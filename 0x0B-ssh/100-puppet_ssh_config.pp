@@ -9,7 +9,7 @@ file { '/etc/ssh/ssh_config':
 
 file_line { 'Turn off password auth':
   path    => '/etc/ssh/ssh_config',
-  line    => '	passwordAuthentication no',
+  line    => 'PasswordAuthentication no',
   replace => '^#IdentityFile',
 }
 
