@@ -3,23 +3,29 @@
 #Update package index and install nginx with -y flag for automatic yes to prompts
 
 
-echo -e "Updating and installing Nginx./n"
+echo -e "Updating and installing Nginx..."
 sudo apt-get update -y -qq && \
-	sudo apt-get install -y nginx 
+sudo apt-get install -y nginx 
 
-echo -e "\nSetting up some minor stuff.\n"
-
+echo "Starting Nginx service..."
 sudo service nginx start
+
+
+echo "Allowing Nginx through firewall..."
 sudo ufw allow "Nginx HTTP"
 
 
+echo "Setting permision for web directory..."
 sudo chown -R "$USER":"$USER" /var/www/html
 sudo chmod -R 755 /var/www
 
 
+echo "Backing up default index file and creating a new one..."
 cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
 
 
-echo -e "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
-
+echo "Restarting Nginx service to apply changes..."
 sudo service nginx restart
+
+echo "Nginx installation and configuration complete successfully."
