@@ -1,27 +1,32 @@
 #!/usr/bin/env bash
-#Configures Nginx server so that /redirect_me is redirecting to another page
-#The redirection must be a "301 Move Permanently"
+# Configures Nginx server so that /redirect_me is redirecting to another page
+# The redirection must be a "301 Move Permanently"
 
-echo -e "Updating and installing Nginx.\n"
-sudo apt-get update -y -qq && \
-	sudo apt-get install nginx -y 
+echo -e "Updating and installing Nginx..."
+sudo apt-get update -y -qq && sudo apt-get install nginx -y 
 
 
-echo -e "\nSetting up some minor stuff.\n"
+echo "Starting Nginx service..."
 sudo service nginx start
+
+
+echo "Allowing Nginx through firewall..."
 sudo ufw allow "Nginx HTTP"
+
+
+echo "Setting permissions for web directory..."
 sudo chown -R "$USER":"$USER" /var/www/html
 sudo chmod -R 755 /var/www
 
-
-cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
-echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
+echo"Configuring redirection..."
+sudo cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
 ADD301_REDIRECT="location /redirect_me {
 	return 301 https://twitter.com/Khaya;
 }"
-sudo sed -i "30i $ADD301_REDIRECT" /etc/nginx/sites-available/default
+sudo sed -i "/^}/i $ADD301_REDIRECT" /etc/nginx/sites-available/default
 
-
+echo "Restarting Nginx service to applychanges..."
 sudo service nginx restart
 
-echo -e "\nCompleted.\n"
+echo "Configuration completed."
