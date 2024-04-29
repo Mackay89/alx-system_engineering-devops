@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# This module configures Nginx to add a costom HTTP response header
+
+
+set -euo pipefail
+
+
+sudo apt-get update
+sudo apt-get install -y nginx 
+
+
+HOST_NAME=$(hostname)
+HEADER="\\\n\tadd_header X-Served-By $HOST_NAME;"
+if ! grep -q "X-Served-By" /etc/nginx/sites-available/default; then
+	sed -i "23i $HEADER" /etc/nginx/sites-availale/default
+fi
+
+
+echo "Hello World!" > /var/www/html/index.html
+
+
+if ! grep -q "redirect_me" /etc/nginx/sites-available/default; then
+	REDIRECT="\\\n\tlocation /redirect_me {\n\t\t return 301 https://twitter.com/Khaya;\n\t}"
+	sed -i "/server_name _;/a $REDIRECT" /etc/nginx/sites-available/default
+fi
+
+
+if ! grep -q "error_page 404"  /etc/nginx/sites-available/default; then
+	ERROR="\\\n\terror_page 404" /custom_404.html;
+	echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+	sed -i "/server_name _;/a $ERROR" /etc/nginx/sites-available/default
+fi
+
+
+service nginx restart
