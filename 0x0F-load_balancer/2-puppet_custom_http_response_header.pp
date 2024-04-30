@@ -7,7 +7,7 @@ package {'nginx':
   ensure => 'installed',
 }
 # add custom fact for Nginx hostname
-Facter::Core::facts::nginx_hostname {'nginx_hostname': }
+facter::Core::facts::nginx_hostname {'nginx_hostname': }
 # Ensure Nginx configuration has custom HTTP header
 file_line { 'http_header':
   path   => '/etc/nginx/nginx.conf',
