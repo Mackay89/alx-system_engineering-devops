@@ -2,12 +2,15 @@
 exec {'update':
   command => '/usr/bin/apt-get update',
 }
+
 #Install Nginx package
 package {'nginx':
   ensure => 'installed',
 }
+
 # add custom fact for Nginx hostname
-facter::Core::facts::nginx_hostname {'nginx_hostname': }
+facter::Core::Facts::Nginx_hostname {'nginx_hostname': }
+
 # Ensure Nginx configuration has custom HTTP header
 file_line { 'http_header':
   path   => '/etc/nginx/nginx.conf',
@@ -15,6 +18,7 @@ file_line { 'http_header':
   match  => 'http {',
   notify => Service['nginx'],
 }
+
 # Restart Nginx service
 service {'nginx':
   ensure => 'running',
