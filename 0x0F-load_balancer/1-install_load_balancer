@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-# This script install and configure HAproxy on your lb-01 server.
+# This script installs and configures HAProxy on your lb-01 server.
 
 set -euo pipefail
 
+apt-get update
 apt-get install -y software-properties-common
+
 add-apt-repository -y ppa:vbernat/haproxy-1.8.*
 apt-get update
 apt-get install -y haproxy=1.8.*
-
 
 load_balancer=$(cat <<EOF
 frontend http
@@ -22,10 +23,10 @@ backend load_b
 EOF
 )
 
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
-echo -e "ENABLED=1\n" | sudo tee -a /etc/default/haproxy
-echo -e "$load_balancer" |sudo tee -a /etc/haproxy/haproxy.cfg
+echo "$load_balancer" |sudo tee -a /etc/haproxy/haproxy.cfg
 
 systemctl restart haproxy
 
-echo "HAProxy intallation and configuration complete successfully."
+echo "HAProxy installation and configuration completed successfully."
