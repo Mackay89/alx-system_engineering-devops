@@ -1,18 +1,20 @@
-#Update package repositories
+# automate task 0 with  Puppet
+
+##Update package repositories
 exec {'update':
   command => '/usr/bin/apt-get update',
 }
 
 #Install Nginx package
-package {'nginx':
+-> package {'nginx':
   ensure => 'installed',
 }
 
 # add custom fact for Nginx hostname
-facter::Core::Facts::Nginx_hostname {'nginx_hostname': }
+-> facter::Core::Facts::Nginx_hostname {'nginx_hostname': }
 
 # Ensure Nginx configuration has custom HTTP header
-file_line { 'http_header':
+-> file_line { 'http_header':
   path   => '/etc/nginx/nginx.conf',
   line   => " add_header X-Served-By \"${facts['nginx_hostname']}\";",
   match  => 'http {',
@@ -20,8 +22,6 @@ file_line { 'http_header':
 }
 
 # Restart Nginx service
-service {'nginx':
-  ensure => 'running',
-  enable => true,
-  require => Package['nginx'],
+-> service {'run':
+  command => '/usr/sbin/service nginx restart',
 }
