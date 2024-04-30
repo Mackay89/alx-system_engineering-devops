@@ -3,28 +3,34 @@
 
 set -euo pipefail
 
+# Update package repositories and install Nginx
 sudo apt-get -y update
 sudo apt-get install -y nginx 
 
+# Add custom response header to identify the server
 HOST_NAME=$(hostname)
 HEADER="\\\n\tadd_header X-Served-By \"$HOST_NAME;\n"
 if ! grep -q "X-Served-By" /etc/nginx/sites-available/default; then
 	sudo sed -i "23i $HEADER" /etc/nginx/sites-available/default
 fi
 
+# Create the index.html page
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 
+# Add a redirection to another page
 if ! grep -q "redirect_me" /etc/nginx/sites-available/default; then
     REDIRECT="\\\n\tlocation /redirect_me {\n\t\t return 301 https://www.twitter.com/Khaya;\n\t}"
     sudo sed -i "42i $REDIRECT" /etc/nginx/sites-available/default
 fi
 
+# Add a custom 404 error page
 if ! grep -q "error_page 404"  /etc/nginx/sites-available/default; then
 	ERROR="\\\n\terror_page 404 /custom_404.html;"
 	echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
 	sudo sed -i "40i $ERROR" /etc/nginx/sites-available/default
 fi
 
+# Restart Nginx service
 sudo service nginx restart
 
 echo "Nginx configuration completed successfully."
