@@ -9,7 +9,7 @@ sudo apt-get install -y nginx
 
 # Add custom response header to identify the server
 HOST_NAME=$(hostname)
-HEADER="\\\n\tadd_header X-Served-By \"$HOST_NAME;\n"
+HEADER="\\\n\tadd_header X-Served-By \"$HOST_NAME;";"
 if ! grep -q "X-Served-By" /etc/nginx/sites-available/default; then
 	sudo sed -i "23i $HEADER" /etc/nginx/sites-available/default
 fi
