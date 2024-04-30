@@ -1,4 +1,4 @@
-#Update package respositories
+#Update package repositories
 exec {'update':
   command => '/usr/bin/apt-get update',
 }
@@ -16,6 +16,8 @@ file_line { 'http_header':
   notify => Service['nginx'],
 }
 # Restart Nginx service
-exec {'nginx_restart':
-  command => '/usr/bin/service nginx restart',
+service {'nginx':
+  ensure => 'running',
+  enable => true,
+  require => Package['nginx'],
 }
