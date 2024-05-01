@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# This script ensure that Nginx is running and listening on port 80
+# This script ensures that Nginx is running and listening on port 80
 
 if ! pgrep nginx > /dev/null; then
    service nginx start
 fi
 
 if ! netstat -tuln | grep ":80 " > /dev/null; then
-   ./0-nginx_likes_port_80
+   /path/to/0-nginx_likes_port_80
 fi
