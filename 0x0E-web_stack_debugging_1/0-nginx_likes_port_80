@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # This script ensures that Nginx is running and listening on port 80
+
 # Start Nginx if it's not already running
 sudo systemctl start nginx
 # Check if Nginx is listening on port 80
