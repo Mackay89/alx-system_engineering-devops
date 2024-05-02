@@ -5,4 +5,4 @@ sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 # Restart Nginx service
 sudo service nginx restart
 # Check if Nginx is not running
-if sudo service nginx status | grep -q "not running"
+sudo service nginx status | grep -q "not running"
