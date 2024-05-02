@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # This script ensures that Nginx is running and listening on port 80
-sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-sudo service nginx start
-kill "$(pgreg 'nginx' | head -l)"
+sudo service nginx || sudo service nginx start
+sudo sed -i 's/listen\s*;/listen 80;/g' /etc/nginx/sites-available/default
+sudo service nginx restart
