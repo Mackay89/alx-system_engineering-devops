@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# This script installs and configures HAProxy on lb-01 server.
+
+set -euo pipefail
+
+sudo apt-get update
+sudo apt-get install -y haproxy
+
+HA_PROXY_CONFIG=$(cat <<EOF
+frontend http
+	bind *:80
+	mode http
+	default_backend servers
+
+backend servers 
+	balance roundrobin
+	server web-01 54.158.80.63:80 check
+	server web-02 100.26.255.237:80 check
+EOF
+)
+
+echo "$HA_PROXY_CONFIG" | sudo tee /etc/haproxy/haproxy.cfg > /dev/null
+
+sudo systemctl restart haproxy
+
+echo "HAProxy installation and configuration completed successfully."

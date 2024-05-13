@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+
+#Script that creates a new 4096-byte RSA key pair named school
+ssh-keygen -t rsa -b 4096 -f school -N "betty"
+
+
+echo "RSA key pair successfully created."

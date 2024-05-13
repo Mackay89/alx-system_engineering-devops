@@ -1,0 +1,44 @@
+global
+	log /dev/log	local0
+	log /dev/log	local 1 notice
+	chroot /dev/lib/haproxy
+	stats socket /run/haproxy/admin.sock mode 600 level admin expose-fd listeners
+	stats timeout 30s
+	user haproxy
+	group haproxy
+	daemon
+
+defaults
+	log global
+	mode http
+	option httplog
+	option dontlognull
+	timeout connect 5000
+	timeout client 50000
+	timeout server 50000
+	errorfile 400 /etc/haproxy/errors/400.http
+	errorfile 403 /etc/haproxy/errors/403.http
+	errorfile 408 /etc/haproxy/errors/408.http
+	errorfile 500 /etc/haproxy/errors/500.http
+	errorfile 502 /etc/haproxy/errors/502.http
+	errorfile 503 /etc/haproxy/errors/503.http
+	errorfile 504 /etc/haproxy/errors/504.http
+
+frontend http-in
+	bind *:80
+	mode http
+	option forwardfor
+	http-request set header X-Forwarded-Port %[dst_port]
+	http-request redirect scheme https coe 301 if !{ sll.fc }
+
+frontend https-in
+	bind *:443 ssl crt/etc/haproxy/certs/mack4y.tech.pem
+	mode http
+	option forwardfor
+	http-request set-header X-Forwarded-Port %[dst_port]
+	default_backend mack4y.tech-backend
+
+backend mack4y.tech-backend
+	balance roundrobin
+	server web-01 54.158.80.63 check
+	server web-02 100.26.255.237 check
