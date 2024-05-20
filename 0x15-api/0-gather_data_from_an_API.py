@@ -12,14 +12,14 @@ import sys
 if __name__ == "__main__":
     employee_id = sys.argv[1]
     base_url = "https://jsonplaceholder.typicode.com/users"
-    url = base_url + "/" + employee_id
+    url = f"{base_url}/{employee_id}"
 
 
     user_response = requests.get(url)
     employeeName = user_response.json().get('name')
 
 
-    todo_url = url + "/todos"
+    todo_url = f"{url}/todos"
     user_response = requests.get(todo_url)
     tasks = user_response.json()
     complete = 0 
