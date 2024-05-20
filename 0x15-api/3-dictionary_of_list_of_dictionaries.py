@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This script experts data in the JSON format.
+This script exports user data and their to-do lists from a 
+REST API to a JSON file.
 """
 
 
