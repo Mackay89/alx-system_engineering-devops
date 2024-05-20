@@ -16,7 +16,7 @@ def fetch_user_data():
     users = requests.get(url + "users").json()
 
 
-    data_to_export ={}
+    data_to_export = {}
     for user in users:
         user_id = user["id"]
         user_url = url + f"todos?userId={user_id}"
