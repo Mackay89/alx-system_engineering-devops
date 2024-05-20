@@ -25,21 +25,21 @@ def fetch_user_data():
 
         data_to_export[user_id] = [
                 {
-                    "task":todo.get("title"),
-                    "completed":todo.get("completed"),
-                    "username":user.get("username"),
+                    "task": todo.get("title"),
+                    "completed" :todo.get("completed"),
+                    "username": user.get("username"),
                 }
                 for todo in todo_list
-            ]
+             ]
 
 
-        return data_to_export
+    return data_to_export
 
 
 if __name__ == "__main__":
     data_to_export = fetch_user_data()
 
 
-with open("todo_all_employees.json", "w")as jsonfile:
-    json.dump(data_to_export, jsonfile, indent=4)
+    with open("todo_all_employees.json", "w")as jsonfile:
+        json.dump(data_to_export, jsonfile, indent=4)
 
