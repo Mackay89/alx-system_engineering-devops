@@ -3,8 +3,6 @@
 This script that, using this REST API, for given employee Id,
 returns information about his/her TODO list progress.
 """
-
-
 import requests
 import sys
 
