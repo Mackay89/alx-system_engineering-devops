@@ -6,32 +6,40 @@ This script experts data in the JSON format.
 
 import json
 import requests
-import sys
+
+
+def fetch_user_data():
+    """
+    Retrieve user data and to-do list for all employees
+    """
+    url = "https://jsonplaceholder.typicode.com/"
+    users = requests.get(url + "users")json()
+
+
+    data_to_export ={}
+    for user in users:
+        user_id = user["id"]
+        user_url = url + f"todos?userId={user_id}"
+        todo_list = requests.get(user_url).json()
+
+
+        data_to_export[user_id] = [
+                {
+                    "task":todo.get("title"),
+                    "completed":todo.get("completed"),
+                    "username":user.get("username"),
+                }
+                for todo in todo_list
+            ]
+
+
+        return data_to_export
 
 
 if __name__ == "__main__":
-    users_response = requests.get("https://jsonplaceholder.typicode.com/users")
-    users = users_response.json()
+    data_to_export = fetch_user_data()
 
 
-    todos_response = requests.get("https://jsonplaceholder.typicode.com/todos")
-    todos = todos_response.json()
-
-
-    todo_all = {}
-
-
-    for user in users:
-        task_list = []
-        for task in todos:
-            if task.get('userId') == user.get('id'):
-                task_dict = {"username": user.get('username'),
-                        "task": task.get('title'),
-                        "completed": task.get('completed')}
-                task_list.append(task_dict)
-    todo_all[user.get('id')] = task_list
-
-
-with open('todo_all_employees.json', mode='w') as f:
-    json.dump(todo_all, f, indent=4)
+with open("todo_all_employees.json", "w")as jsonfile:
+    json.dump(data_to_export, jsonfile, indent=4)
 
