@@ -16,7 +16,8 @@ def fetch_user_data():
     url = "https://jsonplaceholder.typicode.com/"
     users = requests.get(url + "users").json()
 
-
+    # Create a dictionary containing to-do list
+    infomation of all employees
     data_to_export = {}
     for user in users:
         user_id = user["id"]
@@ -38,14 +39,9 @@ def fetch_user_data():
 
 
 if __name__ == "__main__":
-    # Fetch user data and to-do lists
     data_to_export = fetch_user_data()
 
     
-    # Export data to JSON file
+    # Write the data to a JSON file
     with open("todo_all_employees.json", "w")as jsonfile:
         json.dump(data_to_export, jsonfile, indent=4)
-
-
-    print("Data succefully exported to todo_all_employees.json")
-
