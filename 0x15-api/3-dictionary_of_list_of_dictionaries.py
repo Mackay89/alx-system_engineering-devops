@@ -13,7 +13,7 @@ def fetch_user_data():
     Retrieve user data and to-do list for all employees
     """
     url = "https://jsonplaceholder.typicode.com/"
-    users = requests.get(url + "users")json()
+    users = requests.get(url + "users").json()
 
 
     data_to_export ={}
