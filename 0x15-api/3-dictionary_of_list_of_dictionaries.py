@@ -38,9 +38,14 @@ def fetch_user_data():
 
 
 if __name__ == "__main__":
+    # Fetch user data and to-do lists
     data_to_export = fetch_user_data()
 
-
+    
+    # Export data to JSON file
     with open("todo_all_employees.json", "w")as jsonfile:
         json.dump(data_to_export, jsonfile, indent=4)
+
+
+    print("Data succefully exported to todo_all_employees.json")
 
