@@ -1,16 +1,18 @@
 #!/usr/bin/python3
 """
-This script that, using this REST API, for given employee Id,
-returns information about his/her TODO list progress.
+This script retrieves information about an employee's TODO
+list progress using the JSONPlaceholder API.
 """
+
+
 import requests
 import sys
 
 
 if __name__ == "__main__":
-    employeeID = sys.argv[1]
+    employee_id = sys.argv[1]
     base_url = "https://jsonplaceholder.typicode.com/users"
-    url = base_url + "/" + employeeID
+    url = base_url + "/" + employee_id
 
 
     user_response = requests.get(url)
