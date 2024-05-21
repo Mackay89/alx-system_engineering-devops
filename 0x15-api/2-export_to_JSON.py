@@ -11,28 +11,29 @@ import sys
 
 if __name__ == "__main__":
     user_id = sys.argv[1]
+    url = "https://jsonplaceholder.typicode.com/"
 
 
-    response = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-    format(user_id))
-    todos = requests.get("https://jsonplaceholder.typicode.com/todos").json()
+    user = requests.get(url + "users/{}".format(user_id)).json()
+    username = user.get("username")
 
 
-    task_list = []
+    params = {"userId": user_id}
+    todos = requests.get(url + "todos", params).json()
 
+    data_to_export = {
+            user_id: [
+                {
+                    "task": t.get("title"),
+                    "completed": t.get("completed"),
+                    "username": username
+                }
+                for t in todos
+            ]
+        }
 
-    for task in todos:
-        if task.get('user_Id') == int(user_id):
-            task_dict = {"task": task.get('title'),
-                    "completed": task.get('completed'),
-                    "username": user.json().get('username')}
-            task_list.append(task_dict)
-
-
-    todo_user = {user_id: task_list}
-
-
-    file_name = f"{user_id}.json"
-    with open(file_name, mode='w') as f:
-        json.dump(todo_user, f)
+        
+    # Write the data to JSON file with the employee ID as the filename
+    with open("{}.json".format(user_id), "w")as jsonfile:
+        json.dump(data_to_export, jsonfile, indent=4)
 
