@@ -24,3 +24,11 @@ def number_of_subscribers(subreddit):
     except requests.RequestException:
         return 0
 
+
+if __name__  == "__main__":
+    import sys
+    if len(sys.argv) < 2:
+        print("Usage: ./0-subs.py <subreddit>")
+    else:
+        subreddit = sys.argv[1]
+        print(number_of_subscribers(subreddit))
