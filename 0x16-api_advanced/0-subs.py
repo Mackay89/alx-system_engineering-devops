@@ -18,17 +18,9 @@ def number_of_subscribers(subreddit):
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             data = response.json()
-            return data.get['data']['subscribers']
+            return data.get('data', {}).get('subscribers', 0)
         else:
             return 0
     except requests.RequestException:
         return 0
 
-
-if __name__ == "__main__":
-    import sys
-    if len(sys.argv) < 2:
-        print("Usage: ./0-subs.py <subreddit>")
-    else:
-        subreddit = sys.argv[1]
-        print(number_of_subscribers(subreddit))
