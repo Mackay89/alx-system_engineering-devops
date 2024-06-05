@@ -5,7 +5,7 @@ subreddit
 """
 
 
-import requests
+from requests import get
 
 
 def top_ten(subreddit):
@@ -17,6 +17,7 @@ def top_ten(subreddit):
 
     if subreddit is None or not isinstance(subreddit, str):
         print("None")
+        return 
 
 
     user_agent = {'User-agent': 'my-app/0.1'}
@@ -25,17 +26,26 @@ def top_ten(subreddit):
 
 
     response = get(url, headers=user_agent, params=params)
-    all_data = response.json()
+
+
+    if response.status_code != 200:
+        print("None")
+        return
 
 
     try:
-        raw = all_data.get('data').get('subscibers')
+        all_data = response.json()
+        raw = all_data.get('data', {}).get('children', [])
 
 
-        for i in raw:
-            print(i.get('data').get('title'))
+        if not raw:
+            print("None")
+            return
 
 
-    except:
+        for item in raw:
+            print(item.get('data', {}).get('title', "None"))
+
+
+    except Exception as e:
         print("None")
-
