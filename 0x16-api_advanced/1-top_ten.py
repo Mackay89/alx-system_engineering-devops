@@ -47,5 +47,9 @@ def top_ten(subreddit):
             print(item.get('data', {}).get('title', "None"))
 
 
-    except Exception as e:
+    except Exception:
         print("None")
+
+
+if __name__ == "__main__":
+    topten('python')
