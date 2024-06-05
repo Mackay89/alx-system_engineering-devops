@@ -20,7 +20,7 @@ def count_words(subreddit, word_list=[], after=None, cleaned_dict=None):
         temp.append(i.casefold())
 
 
-    cleaned_world_list = list(dict.fromkeys(temp))
+    cleaned_word_list = list(dict.fromkeys(temp))
 
     if cleaned_dict is None:
         cleaned_dict = dict.fromkeys(cleaned_word_list)
@@ -72,7 +72,7 @@ def count_words(subreddit, word_list=[], after=None, cleaned_dict=None):
                 cleaned_dict[j] = 1
 
 
-            elif j in clreaned_dict and cleaned_dict[j] is not None:
+            elif j in cleaned_dict and cleaned_dict[j] is not None:
                 cleaned_dict[j] += 1
 
 
