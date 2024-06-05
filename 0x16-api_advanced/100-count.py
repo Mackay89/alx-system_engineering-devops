@@ -50,7 +50,7 @@ def count_words(subreddit, word_list=[], after=None, cleaned_dict=None):
         new = {k: v for k, v in cleaned_dict.items() if v is not None}
 
 
-        for k in sorted(new.items(), key=lamda x: (-x[1], x[0])):
+        for k in sorted(new.items(), key=lambda x: (-x[1], x[0])):
             print("{}: {}".format(k[0], k[1]))
 
 
