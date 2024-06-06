@@ -20,15 +20,16 @@ def number_of_subscribers(subreddit):
 
 
     user_agent = {'User-agent': 'my-app/0.1'}
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    url = "https://www.reddit.com/r/{}/about.json"
     try:
         response = get(url, headers=user_agent, allow_redirects=False)
         if response.status_code != 200:
             return 0
-        try:
-            all_data = response.json()
-        except ValueError:
-            return 0
+        
+
+        all_data = response.json()
         return all_data.get('data', {}).get('subscribers', 0)
+    except (ValueError, KeyError):
+        return 0
     except Exception:
         return 0
